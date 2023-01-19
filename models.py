@@ -28,5 +28,6 @@ class Pet(db.Model):
     available = db.Column(db.Boolean)
 
     def __repr__(self) -> str:
+        """Simple function to assist in making our pet instances more readable"""
         p = self
         return f"<Pet Name = {p.name} species ={p.species} age={p.age}"

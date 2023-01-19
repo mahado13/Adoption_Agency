@@ -1,0 +1,67 @@
+
+<!-- By:Mahad Osman
+Date: Jan 19
+Assignment: Adoption Agency  -->
+
+
+{%extends 'base.html' %}
+
+{% block title %} Pets Homepage {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+            <div class="col-md col-8">
+                <img src="{{pet.photo_url}}" class ="img-fluid" alt="No Image for this pet">
+                    {% if pet.available == True%}
+                        <p> Name: {{pet.name}} | Species: {{pet.species}} | Age {{pet.age}}: is 
+                            <span class="text-success"><b>Available!</b></span></p>
+                    {%else%}
+                        <p>Name: {{pet.name}} | Species: {{pet.species}} | Age {{pet.age}}: is
+                            <span class="text-danger"><b>Unavailable!</b></span></p>
+                    {%endif%}
+
+
+           
+                    <form>
+                            {{form.hidden_tag()}}
+                            {% for field in form 
+                                if field.widget.input_type !='hidden' %}
+                        <p>
+                            <!-- Included our errors in case an issue arises  -->
+                            {% for err in field.errors %}
+                                {{err}}
+                            {%endfor%}
+                        </p>
+                            {%endfor%}
+                                <p>
+                                    <!-- have to include the species otherwise an error is thrown
+                                        -- Also indivdually select the needed fields to edit as not all fields are to be edited.
+                                     -->
+                                    <div class="form-group">
+                                        {{form.species.label}}
+                                        {{form.species(class_="form-control")}}
+                                    </div>  
+
+                                    <div class="form-group">
+                                        {{form.photo_url.label}}
+                                        {{form.photo_url(class_="form-control")}}
+                                    </div>    
+                                    <div class="form-group">
+                                        {{form.notes.label}}
+                                        {{form.notes(class_="form-control")}}
+                                    </div>  
+                                    <div class="form-group">
+                                        {{form.available.label}}
+                                        {{form.available(class_="form-control")}}
+                                    </div>  
+                                </p>
+                
+                            <button class="btn btn-outline-success btn-lg btn-block" formaction="/pets/{{pet.id}}/edit" formmethod="POST">Update!</button>
+                            <a href="/" class="btn btn-outline-danger btn-lg btn-block" >Cancel</a>
+                    </form>
+                </div>
+            </div>
+</div>
+{% endblock %}

@@ -1,3 +1,8 @@
+<!--
+By:Mahad Osman
+Date: Jan 19
+Assignment: Adoption Agency  -->
+
 {%extends 'base.html' %}
 
 {% block title %} Pets Homepage {% endblock %}
@@ -15,12 +20,14 @@
                         <div class="form-group">
                             {{field.label}}
                             {{field(class_="form-control")}}
+
+                            {% for err in field.errors %}
+                                <small class="form-text text-danger">
+                                    {{err}}
+                                </small>
+                            {%endfor%}
                         </div>    
                     </p>
-                    
-                        
-
-
 
                     {%endfor%}
                     <button class="btn btn-outline-success btn-lg btn-block" formaction="/pets/add" formmethod="POST">Add!</button>

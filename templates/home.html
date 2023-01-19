@@ -1,3 +1,8 @@
+<!--
+By:Mahad Osman
+Date: Jan 19
+Assignment: Adoption Agency  -->
+
 {%extends 'base.html' %}
 
 {% block title %} Pets Homepage {% endblock %}
@@ -10,9 +15,9 @@
             <div class="col-md col-8">
                 <img src="{{pet.photo_url}}" class ="img-fluid" alt="No Image for this pet">
                     {% if pet.available == True%}
-                        <p> {{pet.name}} is <span class="text-success"><b>Available!</b></span></p>
+                        <p> <a href="/pets/{{pet.id}}/edit">{{pet.name}}</a> is <span class="text-success"><b>Available!</b></span></p>
                     {%else%}
-                        <p>{{pet.name}} is <span class="text-danger"><b>Unavailable!</b></span></p>
+                        <p><a href="/pets/{{pet.id}}/edit">{{pet.name}}</a> is <span class="text-danger"><b>Unavailable!</b></span></p>
                     {%endif%}
 
             </div>
