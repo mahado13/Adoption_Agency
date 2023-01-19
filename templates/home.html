@@ -1,0 +1,23 @@
+{%extends 'base.html' %}
+
+{% block title %} Pets Homepage {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for pet in pets%}
+            <div class="col-md col-8">
+                <img src="{{pet.photo_url}}" class ="img-fluid" alt="No Image for this pet">
+                    {% if pet.available == True%}
+                        <p> {{pet.name}} is <span class="text-success"><b>Available!</b></span></p>
+                    {%else%}
+                        <p>{{pet.name}} is <span class="text-danger"><b>Unavailable!</b></span></p>
+                    {%endif%}
+
+            </div>
+        {%endfor%}
+    </div>
+    <a class ="btn btn-success" href="">Add Pet</a>
+</div>
+{% endblock %}

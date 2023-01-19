@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db
+from models import db, connect_db, Pet
 
 """
 By:Mahad Osman
@@ -21,4 +21,9 @@ connect_db(app)
 
 @app.route('/')
 def show_home():
-    return ('<H1>Welcome to the Start!</H1>')
+    pets = Pet.query.all()
+    return render_template('home.html', pets = pets)
+
+@app.route('/pets/add', methods=["GET", "POSTS"])
+def add_new_pet():
+    return render_template('new_pet.html')
